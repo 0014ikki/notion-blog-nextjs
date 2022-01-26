@@ -4,6 +4,7 @@ import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
+import fs from 'fs';
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -42,24 +43,28 @@ const renderBlock = (block) => {
           <Text text={value.text} />
         </p>
       );
+
     case "heading_1":
       return (
         <h1>
           <Text text={value.text} />
         </h1>
       );
+
     case "heading_2":
       return (
         <h2>
           <Text text={value.text} />
         </h2>
       );
+
     case "heading_3":
       return (
         <h3>
           <Text text={value.text} />
         </h3>
       );
+
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
@@ -67,6 +72,7 @@ const renderBlock = (block) => {
           <Text text={value.text} />
         </li>
       );
+
     case "to_do":
       return (
         <div>
@@ -76,6 +82,7 @@ const renderBlock = (block) => {
           </label>
         </div>
       );
+
     case "toggle":
       return (
         <details>
@@ -87,22 +94,37 @@ const renderBlock = (block) => {
           ))}
         </details>
       );
+
     case "child_page":
       return <p>{value.title}</p>;
+
     case "image":
-      const src =
-        value.type === "external" ? value.external.url : value.file.url;
-      const caption = value.caption ? value.caption[0].plain_text : "";
-      return (
-        <figure>
-          <img src={src} alt={caption} />
-          {caption && <figcaption>{caption}</figcaption>}
-        </figure>
-      );
+      // 外部埋め込み画像は現在非対応
+      if (block.image.type === 'file') {
+        return (
+          <figure>
+            <img
+              src={value.file.url} // Notion s3 を使用する場合
+              //src={'/blogImages/' + block.id + '.png'}
+              //alt={getAltStr(value.caption)}
+            />
+          </figure>
+        )
+      }
+
     case "divider":
       return <hr key={id} />;
+
     case "quote":
       return <blockquote key={id}>{value.text[0].plain_text}</blockquote>;
+    
+    case "image":
+      if (!isImageExist(block.id)) {
+        const binary = blob.arrayBuffer()
+        const buffer = Buffer.from(binary)
+        saveImage(buffer, block.id)
+      };
+
     default:
       return `❌ Unsupported block (${
         type === "unsupported" ? "unsupported by Notion API" : type
@@ -114,6 +136,9 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
+
+  const tags = page.properties.Tag.multi_select.map((_) => _.name)
+
   return (
     <div>
       <Head>
@@ -125,6 +150,24 @@ export default function Post({ page, blocks }) {
         <h1 className={styles.name}>
           <Text text={page.properties.Page.title} />
         </h1>
+        <div>
+          <p className={'opacity-90 font-bold'}>
+            <span className="posted mr-2">
+              <span className="fs12 mr-2">📆</span>
+              {/* {getDateStr(date)} */}
+            </span>
+            {tags && (
+              <span className="tag">
+                <span>🔖  </span>
+                {tags.map((tag) => (
+                  //<Link href={`/tags/${encodeURIComponent(tag)}`} passHref prefetch={false} key={tag}>
+                    <a> {tag} </a>
+                  //</Link>
+                ))}
+              </span>
+            )}
+          </p>
+        </div>
         <section>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -184,6 +227,7 @@ export const getStaticProps = async (context) => {
         };
       })
   );
+
   const blocksWithChildren = blocks.map((block) => {
     // Add child blocks if the block should contain children but none exists
     if (block.has_children && !block[block.type].children) {
@@ -193,6 +237,18 @@ export const getStaticProps = async (context) => {
     }
     return block;
   });
+
+  //イメージの取得
+  const saveImage = async (imageBinary, keyName)  => {
+    const imagesPath = 'public/blogImages'
+    if (!fs.existsSync(imagesPath)) fs.mkdirSync(imagesPath)
+    fs.writeFile(imagesPath + '/' + keyName + '.png', imageBinary, (error) => {
+      if (error) {
+        console.log(error)
+        throw error
+      }
+    })
+  }
 
   return {
     props: {
