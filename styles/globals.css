@@ -48,12 +48,13 @@ h1 {
 
   .content {
     margin-left: 25%;
+    width: 75%;
   }
 }
 
-.content {
+/* .content {
   width: 75%;
-}
+} */
 
 .navi {
   /* margin-right: auto; */
