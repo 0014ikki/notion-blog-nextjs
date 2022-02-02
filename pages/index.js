@@ -15,9 +15,9 @@ export default function Home({ posts }) {
       </Head>
 
       <main className={styles.container}>
-        <header className={styles.header}>
+        {/* <header className={styles.header}>
           <h1>0014 blog</h1>
-        </header>
+        </header> */}
 
         <h2 className={styles.heading}>記事一覧</h2>
         <ol className={styles.posts}>

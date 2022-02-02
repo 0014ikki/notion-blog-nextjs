@@ -2,17 +2,20 @@ import Link from 'next/link';
 
 const navItems = [
   { label: 'TOP', page: '/' },
-  // { label: 'ABOUT', page: '/about' },
-  // { label: 'PROFILE', page: '/profile' },
+  { label: 'ABOUT', page: '/about' },
+  { label: 'PROFILE', page: '/profile' },
 ]
 
 const Navigation = ({ titlePre = '', ogImageUrl = '', description = '', slug = '' }) => {
 
   return (
     <header className="navi">
-      <figure className="logos">
-        <img src="/ICON.png" /> 
-      </figure>
+      <div className="flex">
+        <figure >
+          <img className="logos" src="/ICON.png"/> 
+        </figure>
+        <h2>0014 blog</h2>
+      </div>
       <ul className="list-none">
         {navItems.map(({ label, page, link }) => (
           <li key={label}>
