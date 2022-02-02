@@ -1,7 +1,8 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  padding-top: 5rem;
+  padding: 5%;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -11,15 +12,15 @@ body {
   color: black;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background-color: rgb(24, 24, 31);
     color: rgb(238, 238, 238);
   }
-}
+} */
 
 a {
-  color: #2563eb;
+  color: #414141;
   text-decoration: none;
 }
 
@@ -29,4 +30,41 @@ a {
 
 h1 {
   font-weight: 800;
+}
+
+.main {
+  width: 100%;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px)
+{
+  .navi {
+    position: fixed;
+    width: 9rem;
+  }
+
+  .content {
+    margin-left: 25%;
+  }
+}
+
+.content {
+  width: 75%;
+}
+
+.navi {
+  /* margin-right: auto; */
+  /* float: left; */
+  margin: 0 auto;
+  margin-left: 0;
+  margin-bottom: 2.5rem;
+  list-style: none;
+}
+
+.logos {
+  align-items: left;
+  margin: 0;
 }

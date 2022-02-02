@@ -34,18 +34,23 @@ export default function Home({ posts }) {
             return (
 //              <li key={post.id} className={styles.post}>
               <li key={post.properties.Slug.rich_text[0]?.plain_text} className={styles.post}>
-                <h3 className={styles.postTitle}>
+                {/* <h3 className={styles.postTitle}>
                   <Link href={`/${post.properties.Slug.rich_text[0]?.plain_text}`}>
                     <a>
                       <Text text={post.properties.Page.title} />
                     </a>
                   </Link>
-                </h3>
-
-                <p className={styles.postDescription}>{date}</p>
-                <Link href={`/${post.properties.Slug.rich_text[0]?.plain_text}`}>
-                  <a> Read post →</a>
-                </Link>
+                </h3> */}
+                <span>
+                  <span className={styles.postDescription}>{date}</span>
+                  <Link href={`/${post.properties.Slug.rich_text[0]?.plain_text}`}>
+                    <a className={styles.postTitle}>
+                      <Text text={post.properties.Page.title} />
+                    </a>
+                  </Link>
+                  
+                </span>
+                
               </li>
             );
           })}
