@@ -4,12 +4,6 @@
   margin: 0 auto;
 }
 
-.logos {
-  display: flex;
-  align-items: center;
-  padding: 40px 0 20px;
-}
-
 .header {
   margin-bottom: 50px;
 }
