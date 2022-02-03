@@ -32,6 +32,7 @@ export const Text = ({ text }) => {
   });
 };
 
+
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
@@ -138,6 +139,7 @@ export default function Post({ page, blocks }) {
   }
 
   const tags = page.properties.Tag.multi_select.map((_) => _.name)
+  const date = page.properties.Date.date.start;
 
   return (
     <div>
@@ -151,14 +153,14 @@ export default function Post({ page, blocks }) {
           <Text text={page.properties.Page.title} />
         </h1>
         <div>
-          <p className={'opacity-90 font-bold'}>
-            <span className="posted mr-2">
-              <span className="fs12 mr-2">📆</span>
-              {/* {getDateStr(date)} */}
+          <p>
+            <span className={styles.info}>
+              <span>📆 </span>
+              {date}
             </span>
             {tags && (
-              <span className="tag">
-                <span>🔖  </span>
+              <span className={styles.info}>
+                <span>🔖</span>
                 {tags.map((tag) => (
                   //<Link href={`/tags/${encodeURIComponent(tag)}`} passHref prefetch={false} key={tag}>
                     <a> {tag} </a>
