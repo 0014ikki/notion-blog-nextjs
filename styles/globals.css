@@ -38,6 +38,7 @@ h2 {
 
 figure {
   margin: 0;
+  align-items: Center;
 }
 
 .main {
@@ -61,8 +62,8 @@ figure {
 }
 
 .logos {
-  width: 5rem;
-  align-items: left;
+  width: 2.5rem;
+  align-items: Center;
   margin: 0;
 }
 
@@ -89,8 +90,8 @@ figure {
   }
 
   .logos {
-    width: 9rem;
-    float: left;
+    width: 5rem;
+    margin: 1rem;
   }
   
   .flex {

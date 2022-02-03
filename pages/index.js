@@ -22,14 +22,7 @@ export default function Home({ posts }) {
         <h2 className={styles.heading}>記事一覧</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
-            const date = new Date(post.properties.Date.date.start).toLocaleString(
-              "ja-JP",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
+            const date = post.properties.Date.date.start;
             
             return (
 //              <li key={post.id} className={styles.post}>
@@ -41,16 +34,12 @@ export default function Home({ posts }) {
                     </a>
                   </Link>
                 </h3> */}
-                <span>
-                  <span className={styles.postDescription}>{date}</span>
+                  <a className={styles.date}>{date}</a>
                   <Link href={`/${post.properties.Slug.rich_text[0]?.plain_text}`}>
                     <a className={styles.postTitle}>
                       <Text text={post.properties.Page.title} />
                     </a>
                   </Link>
-                  
-                </span>
-                
               </li>
             );
           })}

@@ -42,12 +42,14 @@
 
 .post {
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .postTitle {
   color: #414141;
   margin-left: 20px;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .postTitle a {
@@ -56,6 +58,10 @@
 
 .postDescription {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   opacity: 0.65;
+}
+
+.date {
+  flex: 0 0 100px;
 }
