@@ -122,8 +122,14 @@ const renderBlock = (block) => {
       }
     
     case "video":
+      const opts = {
+        height: '360',
+        width: '640',
+      };
+      const vurl = value.external.url
+      const vid = vurl.substr(vurl.indexOf('=') + 1)
       return (
-        <YouTube videoId={value.external.url[0][0].match(/\?v=([^&]+)/)}  />
+        <YouTube videoId={vid} opts={opts} />
       );
 
     case "divider":
@@ -161,7 +167,7 @@ export default function Post({ page, blocks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <article className={styles.container}>
+      <article>
         <h1 className={styles.name}>
           <Text text={page.properties.Page.title} />
         </h1>
@@ -176,14 +182,14 @@ export default function Post({ page, blocks }) {
                 <span>🔖</span>
                 {tags.map((tag) => (
                   //<Link href={`/tags/${encodeURIComponent(tag)}`} passHref prefetch={false} key={tag}>
-                    <a> {tag} </a>
+                    <a>{tag} </a>
                   //</Link>
                 ))}
               </span>
             )}
           </p>
         </div>
-        <section>
+        <section className={styles.container}>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}

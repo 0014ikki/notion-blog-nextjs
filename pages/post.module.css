@@ -50,6 +50,12 @@
   height: auto;
 }
 
+.container iframe {
+  padding-left: 10%;
+  width: auto;
+  height: auto;
+}
+
 .container figure {
   margin-left: 0;
   margin-right: 0;
