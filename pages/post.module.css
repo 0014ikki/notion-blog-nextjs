@@ -46,6 +46,9 @@
 }
 
 .container img {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
   width: 90%;
   height: auto;
 }
@@ -53,7 +56,7 @@
 .container iframe {
   margin-top: 10px;
   margin-bottom: 10px;
-  padding-left: 20px;
+  margin-left: 10px;
   width: 480px;
   height: 240px;
 }

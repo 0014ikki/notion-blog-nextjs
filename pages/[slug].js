@@ -129,7 +129,7 @@ const renderBlock = (block) => {
       const vurl = value.external.url
       const vid = vurl.substr(vurl.indexOf('=') + 1)
       return (
-        <YouTube videoId={vid} opts={opts} />
+      <YouTube videoId={vid} opts={opts} />
       );
 
     case "divider":
