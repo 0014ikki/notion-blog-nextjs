@@ -2,6 +2,7 @@
   /* padding: 0 20px;
   max-width: 700px; */
   margin: 0 auto;
+  margin-left: 15px;
 }
 
 .container p {
@@ -9,6 +10,18 @@
   font-size: .9rem;
   margin-top: 5px;
   margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.container a:before {
+  content: "[link] ";
+}
+
+.container a {
+  font-size: .9rem;
+  font-style: italic;
+  text-decoration: underline;
+  color: #414141;
 }
 
 .container h1 {
@@ -55,7 +68,19 @@
   /* border-left: 4px solid #CCC; */
   border-radius: 2px;
   background-color: #e4e4e4;
-  }
+}
+
+.container li {
+  font-size: .8rem;
+  margin-left : 15px;
+}
+
+.container details {
+  font-size: .9rem;
+  margin-left : 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 .name {
   font-size: 36px;
@@ -63,6 +88,7 @@
 
 .back {
   display: inline-block;
+  margin-top: 50px;
   margin-bottom: 20px;
 }
 
@@ -104,3 +130,4 @@
   font-size: 0.85rem;
   max-width: 100%;
 }
+

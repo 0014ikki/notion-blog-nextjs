@@ -5,6 +5,7 @@ import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import fs from 'fs';
+import YouTube from 'react-youtube'
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -67,6 +68,12 @@ const renderBlock = (block) => {
       );
 
     case "bulleted_list_item":
+      return (
+        <li>
+          <Text text={value.text} />
+        </li>
+      );
+
     case "numbered_list_item":
       return (
         <li>
@@ -110,8 +117,14 @@ const renderBlock = (block) => {
               //alt={getAltStr(value.caption)}
             />
           </figure>
+
         )
       }
+    
+    case "video":
+      return (
+        <YouTube videoId={value.external.url[0][0].match(/\?v=([^&]+)/)}  />
+      );
 
     case "divider":
       return <hr key={id} />;
@@ -174,11 +187,11 @@ export default function Post({ page, blocks }) {
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
-          <Link href="/">
-            <a className={styles.back}>← Go home</a>
-          </Link>
         </section>
       </article>
+      <Link href="/">
+        <a className={styles.back}>← Go home</a>
+      </Link>
     </div>
   );
 }
@@ -257,6 +270,6 @@ export const getStaticProps = async (context) => {
       page,
       blocks: blocksWithChildren,
     },
-    revalidate: 1,
+    //revalidate: 1,
   };
 };
