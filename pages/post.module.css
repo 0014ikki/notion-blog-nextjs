@@ -46,14 +46,16 @@
 }
 
 .container img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
 .container iframe {
-  padding-left: 10%;
-  width: auto;
-  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  width: 480px;
+  height: 240px;
 }
 
 .container figure {
