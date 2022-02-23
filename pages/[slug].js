@@ -164,7 +164,10 @@ export default function Post({ page, blocks }) {
     <div>
       <Head>
         <title>{page.properties.Page.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/android-chrome-192x192.png" />
       </Head>
 
       <article>

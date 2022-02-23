@@ -11,7 +11,10 @@ export default function Home({ posts }) {
     <div>
       <Head>
         <title>0014 blog</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/android-chrome-192x192.png" />
       </Head>
 
       <main className={styles.container}>
