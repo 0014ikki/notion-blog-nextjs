@@ -4,8 +4,8 @@ import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
-import fs from 'fs';
-import YouTube from 'react-youtube'
+import YouTube from 'react-youtube';
+import saveImageIfNeeded from '../lib/saveImage';
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -106,6 +106,7 @@ const renderBlock = (block) => {
     case "child_page":
       return <p>{value.title}</p>;
 
+/*
     case "image":
       // 外部埋め込み画像は現在非対応
       if (block.image.type === 'file') {
@@ -120,7 +121,24 @@ const renderBlock = (block) => {
 
         )
       }
-    
+*/
+
+    case 'image':
+      // 外部埋め込み画像は現在非対応
+      if (block.image.type === 'file') {
+        return (
+          <figure>
+            <img
+              src={'/blogImages/' + block.id + '.png'}
+              fill={false}
+              width={900}
+              height={600}
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </figure>
+        )
+      }
+
     case "video":
       const opts = {
         height: '360',
@@ -263,16 +281,7 @@ export const getStaticProps = async (context) => {
   });
 
   //イメージの取得
-  const saveImage = async (imageBinary, keyName)  => {
-    const imagesPath = 'public/blogImages'
-    if (!fs.existsSync(imagesPath)) fs.mkdirSync(imagesPath)
-    fs.writeFile(imagesPath + '/' + keyName + '.png', imageBinary, (error) => {
-      if (error) {
-        console.log(error)
-        throw error
-      }
-    })
-  }
+  saveImageIfNeeded(blocksWithChildren)
 
   return {
     props: {
