@@ -10,7 +10,7 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>0014 blog</title>
+        <title>k21 blog</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

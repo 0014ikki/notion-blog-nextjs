@@ -14,7 +14,7 @@ const Navigation = ({ titlePre = '', ogImageUrl = '', description = '', slug = '
         <figure >
           <img className="logos" src="/ICON.png"/> 
         </figure>
-        <h2>0014 blog</h2>
+        <h2>k21 blog</h2>
       </div>
       <ul className="list-none">
         {navItems.map(({ label, page, link }) => (
