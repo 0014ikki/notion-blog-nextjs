@@ -17,6 +17,11 @@ export default function Home({ posts }) {
         <link rel="icon" type="image/png" href="/android-chrome-192x192.png" />
       </Head>
 
+      <main className={styles.container}>
+        {/* <header className={styles.header}>
+          <h1>0014 blog</h1>
+        </header> */}
+
         <h2 className={styles.heading}>記事一覧</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
@@ -42,6 +47,7 @@ export default function Home({ posts }) {
             );
           })}
         </ol>
+      </main>
     </div>
   );
 }

@@ -216,6 +216,7 @@ export default function Post({ page, blocks }) {
           ))}
         </section>
       </article>
+      
       <Link href="/">
         <a className={styles.back}>← Go home</a>
       </Link>

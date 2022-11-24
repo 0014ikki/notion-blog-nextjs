@@ -2,7 +2,7 @@ html,
 body {
   margin: 0 auto;
   padding-top: 5rem;
-  padding: 5%;
+  padding: 5rem;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -43,7 +43,7 @@ figure {
 
 .main {
   width: 100%;
-  max-width: 48rem;
+  max-width: 950px;
   margin-left: auto;
   margin-right: auto;
 }
